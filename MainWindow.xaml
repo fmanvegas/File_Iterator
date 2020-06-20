@@ -14,10 +14,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Window.Background>
         <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-            <GradientStop Color="#FF5C6D9B" Offset="0.793"/>
+            <GradientStop Color="#FF5C6D9B" Offset="0.991"/>
             <GradientStop Color="White" Offset="1"/>
             <GradientStop Color="#FF0A0A0A" Offset="0"/>
-            <GradientStop Color="#FF0A0A0C" Offset="0.366"/>
+            <GradientStop Color="#FF0A0A0C" Offset="0.871"/>
         </LinearGradientBrush>
     </Window.Background>
     <Window.DataContext>
@@ -221,10 +221,7 @@
                                     <DataGrid ItemsSource="{Binding SelectedFile.Lines}" AutoGenerateColumns="False"
                                               SelectedItem="{Binding SelectedLine}"
                                               >
-                                        <DataGrid.Resources>
-                                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
-                   Color="LightBlue"/>
-                                        </DataGrid.Resources>
+                                     
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Bad">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -244,7 +241,7 @@
                                             <DataGridTextColumn Header="Content" Binding="{Binding Content}" IsReadOnly="True">
                                                 <DataGridTextColumn.CellStyle>
                                                     <Style TargetType="{x:Type DataGridCell}">
-                                                        <Setter Property="Foreground" Value="Black"/>
+                                                        <Setter Property="Foreground" Value="White"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding Bad}" Value="True">
                                                                 <Setter Property="Foreground" Value="Red"/>
