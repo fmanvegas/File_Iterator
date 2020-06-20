@@ -65,7 +65,7 @@ namespace File_Iterator
         }
         internal FileHolder Owner;
         public int Index { get; }
-        public string Content { get; }
+        public string Content { get; set; }
 
         private bool _badLine;
         public bool Bad
