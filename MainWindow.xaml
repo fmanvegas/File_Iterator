@@ -7,16 +7,17 @@
         mc:Ignorable="d"
         FontFamily="Segoe UI Light"
         Closing="Window_Closing"
+        ShowInTaskbar="True"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
         Title="MainWindow" Height="450" Width="800">
     <Window.Background>
         <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-            <GradientStop Color="#FF0A0D42" Offset="0.853"/>
-            <GradientStop Color="#FF153365" Offset="1"/>
-            <GradientStop Color="Black" Offset="0"/>
-            <GradientStop Color="#FF242425" Offset="0.128"/>
+            <GradientStop Color="#FF5C6D9B" Offset="0.991"/>
+            <GradientStop Color="White" Offset="1"/>
+            <GradientStop Color="#FF0A0A0A" Offset="0"/>
+            <GradientStop Color="#FF0A0A0C" Offset="0.871"/>
         </LinearGradientBrush>
     </Window.Background>
     <Window.DataContext>
@@ -39,22 +40,47 @@
             </Grid.Background>-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/> 
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" Text="BIPHER" Margin="10,0" FontSize="34" Foreground="Yellow" FontFamily="Arial Narrow" HorizontalAlignment="Stretch"
-                       MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
+            <TextBlock VerticalAlignment="Center" Margin="10,0" FontSize="34" Foreground="Yellow" FontFamily="Arial Narrow" HorizontalAlignment="Stretch"
+                       MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"                       
                        >
+                <Run Text="BIPHER"/>
+                <Run Text="BINARSoft Content Scanner" FontSize="10" Foreground="White" BaselineAlignment="Center" FontFamily="Global Sans Serif"/>
                 <TextBlock.Effect>
                     <DropShadowEffect/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Button Content="-" Grid.Column="1" FontSize="35" Background="Transparent" VerticalContentAlignment="Top" VerticalAlignment="Top"
-                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"   IsEnabled="True"
-                    Command="{x:Static SystemCommands.MinimizeWindowCommand}"
-                    />
+
+            <Button Grid.Column="1" FontSize="35" Background="Transparent" VerticalContentAlignment="Top" VerticalAlignment="Top"
+                    Click="btnMinimize_Click" Width="30" BorderThickness="0" Focusable="False"
+                    >
+                <Button.Content>
+                    <Path Data="M 0 18 L 18 18" Stroke="Black" StrokeThickness="2"/>
+                </Button.Content>
+            </Button>
+
+            <Button Grid.Column="2" FontSize="35" Background="Transparent" VerticalContentAlignment="Top" VerticalAlignment="Top"
+                    Click="btnMaximize_Click" Width="30" BorderThickness="0" Focusable="False"
+                      >
+                <Button.Content>
+                    <Path Data="M 2 2 L 18 2 M 20 4 L 20 18 M 18 20 L 2 20 M 0 18 L 0 4" Stroke="Black" StrokeThickness="2"/>
+                </Button.Content>
+            </Button>
+
+            <Button Grid.Column="3" FontSize="35" Background="Transparent" VerticalContentAlignment="Top" VerticalAlignment="Top"
+                    Click="btnClose_Click" Width="30" BorderThickness="0" Focusable="False"
+                      >
+                <Button.Content>
+                    <Path Data="M 2 2 L 18 18 M 2 18 L 18 2" Stroke="Black" StrokeThickness="2"/>
+                </Button.Content>
+            </Button>
+
 
         </Grid>
-     
+
 
         <Grid Grid.Row="1">
 
@@ -157,9 +183,10 @@
                             <RowDefinition/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                       
+
                         <TabControl Grid.Column="1" Grid.Row="1"  Background="Transparent">
 
                             <TabItem >
@@ -233,11 +260,10 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid>
-                                    <DataGrid ItemsSource="{Binding SelectedFile.Lines}" AutoGenerateColumns="False">
-                                        <DataGrid.Resources>
-                                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
-                   Color="LightBlue"/>
-                                        </DataGrid.Resources>
+                                    <DataGrid ItemsSource="{Binding SelectedFile.Lines}" AutoGenerateColumns="False"
+                                              SelectedItem="{Binding SelectedLine}"
+                                              >
+                                     
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Bad">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -257,7 +283,7 @@
                                             <DataGridTextColumn Header="Content" Binding="{Binding Content}" IsReadOnly="True">
                                                 <DataGridTextColumn.CellStyle>
                                                     <Style TargetType="{x:Type DataGridCell}">
-                                                        <Setter Property="Foreground" Value="Black"/>
+                                                        <Setter Property="Foreground" Value="White"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding Bad}" Value="True">
                                                                 <Setter Property="Foreground" Value="Red"/>
@@ -269,6 +295,7 @@
                                         </DataGrid.Columns>
 
                                     </DataGrid>
+
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -283,6 +310,9 @@
                             </Grid>
 
                         </GroupBox>
+
+                        <RichTextBox local:RichTextBoxHelper.DocumentXaml="{Binding SelectedLine.Content, Mode=TwoWay}" IsReadOnly="True" Grid.Row="4" TextChanged="RichTextBox_TextChanged"/>
+
                     </Grid>
                 </TabItem>
 

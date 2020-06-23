@@ -4,10 +4,8 @@
              xmlns:local="clr-namespace:File_Iterator"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="{x:Type DataGrid}">
-            <Setter Property="Background" Value="Transparent"/>
-        </Style>
-
+        
+        <SolidColorBrush Color="#FF0A0A0A" x:Key="BACK"/>
 
         <Style x:Key="wtf"
        TargetType="{x:Type Window}">
@@ -63,6 +61,36 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="{x:Type DataGridRow}" x:Key="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridCell}" x:Key="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+        </Style>
+
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        
 
     </Application.Resources>
 </Application>

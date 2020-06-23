@@ -38,5 +38,45 @@ namespace File_Iterator
         {
             DragMove();
         }
+
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.CheckKeyword(sender as RichTextBox, "while", Colors.Purple, 0);
+            this.CheckKeyword(sender as RichTextBox, "if", Colors.Green, 0);
+        }
+        private void CheckKeyword(RichTextBox box, string word, Color color, int startIndex)
+        {
+            //if (Rchtxt.Text.Contains(word))
+            //{
+            //    int index = -1;
+            //    int selectStart = Rchtxt.SelectionStart;
+
+            //    while ((index = Rchtxt.Text.IndexOf(word, (index + 1))) != -1)
+            //    {
+            //        //Rchtxt.select((index + startIndex), word.Length);
+            //        //Rchtxt.SelectionColor = color;
+            //        //Rchtxt.Select(selectStart, 0);
+            //        //Rchtxt.SelectionColor = Colors.Black;
+            //    }
+        }
+
     }
 }

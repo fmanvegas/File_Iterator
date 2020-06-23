@@ -19,6 +19,7 @@ namespace File_Iterator
             SearchLocationCommand = new RelayCommand(searchLocation);
         }
 
+        public bool IsTrue => true;
        
         private void searchLocation(object obj)
         {
@@ -112,6 +113,8 @@ namespace File_Iterator
         public FileHolder SelectedFile { get => _selectedFile; set { _selectedFile = value; OnPropChanged();  } }
         private FileHolder _selectedFile;
 
+        public LineHolder SelectedLine { get => _selectedLine; set { _selectedLine = value; OnPropChanged(); } }
+        private LineHolder _selectedLine;
       
         private void generateEntry(FileInfo obj)
         {
