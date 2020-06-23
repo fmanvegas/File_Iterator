@@ -110,6 +110,48 @@
                 <TabItem Header="Results">
 
                     <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Bad}" Value="True"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Background" Value="Pink"/>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Bad}" Value="true"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="false"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Background" Value="Red"/>
+                                    </MultiDataTrigger>
+
+
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Bad}" Value="false"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="false"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Background" Value="Blue"/>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Bad}" Value="false"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Background" Value="Gray"/>
+                                    </MultiDataTrigger>
+                                    <!--<DataTrigger Binding="{Binding Bad}" Value="True">
+                                        <Setter Property="Background" Value="Green"/>
+                                    </DataTrigger>-->
+                                    <!--<Trigger Property="DataGridCell.IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FF0000" />
+                                    </Trigger>-->
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition/>
