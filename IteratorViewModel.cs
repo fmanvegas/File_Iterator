@@ -102,6 +102,7 @@ namespace File_Iterator
             get { return _dirtyCount; }
             set { _dirtyCount = value; OnPropChanged(); }
         }
+        public ObservableCollection<string> MyComboBox { get; set; } = new ObservableCollection<string>() { "Frank", "Lacey"};
 
         public ObservableCollection<FileHolder> Files { get; set; } = new ObservableCollection<FileHolder>();
         public ObservableCollection<FileHolder> GoodFiles { get; set; } = new ObservableCollection<FileHolder>();

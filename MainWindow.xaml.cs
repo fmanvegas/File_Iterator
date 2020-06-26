@@ -21,11 +21,13 @@ namespace File_Iterator
     /// </summary>
     public partial class MainWindow : Window
     {
+        IteratorViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
 
-             
+            if (DataContext is IteratorViewModel i)
+                vm = i;
         }
 
        
@@ -78,5 +80,17 @@ namespace File_Iterator
             //    }
         }
 
+        private void ComboBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (sender is ComboBox box && !string.IsNullOrEmpty(box.Text))
+                {
+                    var entry = box.Text;
+                    if (!vm.MyComboBox.Contains(entry))
+                        vm.MyComboBox.Add(entry);
+                }
+            }
+        }
     }
 }

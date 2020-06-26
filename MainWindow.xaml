@@ -23,7 +23,9 @@
     <Window.DataContext>
         <local:IteratorViewModel/>
     </Window.DataContext>
-
+    <Window.Resources>
+        
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -116,6 +118,8 @@
                     <Run Text="{Binding DirtyPercent}"/><Run Text="%" FontSize="15"  />
                     </TextBlock>
                 </GroupBox>
+
+                <ComboBox ItemsSource="{Binding MyComboBox}" IsEditable="True" IsReadOnly="False" PreviewKeyUp="ComboBox_PreviewKeyUp"/>
             </StackPanel>
 
 
